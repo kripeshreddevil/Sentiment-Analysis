@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <title>sentiment analysis on twitter</title>
+    
+
+    </head>
+    <body style="color:green;background-color: powderblue;">
+      
+      <header>Sentiment analysis</header>
+      <form method>
+        <input type="text" placeholder="enter text here" name="query" value="{{query}}">
+        <span>using</span>
+      <select name="classifier-type">
+          <!--option value="0">Naive Bayes</option>-->
+          <option value="1">Max Entropy</option>
+        </select>
+        <button type="submit" role="button">Search</button>
+      </form>
+
+      <div id="visuals" style="display:none;" pos={{poscount}} neg={{negcount}}><!-- yo visual  le visualize garney ho  yo div vitra ko kura lai google chart ma-->
+        <div class="page-header">
+          <h4>Sentiment Analysis Results for '{{query}}' <h2 style="color:blue">Positive in blue</h2><h2 style="color:red;"> Negative in red</h2></h4>
+          <h5>Positives:{{pospercent}}%; Negatives:{{negpercent}}%)</h5>
+        </div>
+      </div>
+      
+      <div id="tweets" style="display:none;"><!-- yo id=tweet javascript ma use va xa  yesle tweet haru display garney ho -->
+        <ul >
+          <li>
+            <b>Tweets about '{{query}}'</b>
+          </li>
+          {% for item in tweets %}
+          <li>
+            <p>{{ item[1].text }}</p>
+            <p>By {{ item[1].user.screen_name }}</p><br><br>
+            
+          </li>
+          {% end %}
+        </ul>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+     <script>window.jQuery || document.write('<script src="/static/js/vendor/jquery-3.1.0.min.js"><\/script>')</script>
+        <script src="/static/js/vendor/jquery.timeago.js"></script>
+        <script src="/static/js/main.js"></script>        
+    </body>
+</html>
